@@ -15,7 +15,6 @@ import java.time.ZoneOffset;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class GRPCDataServiceImpl implements GRPCDataService {
 
     @GrpcClient(value = "data-generator-blocking")

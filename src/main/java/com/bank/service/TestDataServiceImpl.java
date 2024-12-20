@@ -35,7 +35,7 @@ public class TestDataServiceImpl implements TestDataService{
             Data data = new Data();
             data.setSensorId( (long) getRandomNumber(1, 10) );
             data.setMeasurement( getRandomNumber(15, 20) );
-            data.setMeasurementType(getRandomNumber(testOptions.getMeasurementTypes() ) );
+            data.setMeasurementType(getRandomMeasurement(testOptions.getMeasurementTypes() ) );
             data.setTimestamp( LocalDateTime.now());
            // action List add
             dataBatch.add(data);
@@ -45,9 +45,9 @@ public class TestDataServiceImpl implements TestDataService{
                 grpcDataService.send(dataBatch);
                 // action List clear
                 dataBatch.clear(); } },
+                    0,
             testOptions.getDelayInSecond(),
                     TimeUnit.SECONDS
-
             );
 
         }
@@ -57,9 +57,10 @@ public class TestDataServiceImpl implements TestDataService{
         return (Math.random() * (max - min)) + min;
     }
 
-    private Data.MeasurementType getRandomMeasurementType ( Data.MeasurementType[] measurementTypes) {
+    private Data.MeasurementType getRandomMeasurement ( Data.MeasurementType[] measurementTypes) {
     int randomTypeId = (int) (Math.random() * measurementTypes.length);
     return measurementTypes[randomTypeId];
         }
     }
-}
+
+
