@@ -1,14 +1,15 @@
 spring:
   config:
-  import: optional:file:.env[.properties]
+    import: "optional:file:.env"
+
   server:
     port: 8081
 
-    grpc:
-      client:
-        GLOBAL:
-          address: ${GRPC_HOST}
-          negotiation-type: plaintext
+grpc:
+  client:
+    GLOBAL:
+      address: ${GRPC_HOST:localhost:50051}
+      negotiation-type: plaintext
 
-        push:
-          batch-size: ${BATCH_SIZE}
+    push:
+      batch-size: ${BATCH_SIZE:100}
